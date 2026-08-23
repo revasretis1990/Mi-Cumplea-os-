@@ -1,73 +1,884 @@
-html   {
-    font-size: 7px;
+* {
+    box-sizing: border-box;
 }
 
-body{
-    width: 100%;
-    overflow-x: hidden;
-    text-align: center;
-    background: linear-gradient(rgba(0, 0, 255, 0.452),rgba(0, 0, 0, 0.815));
-    color: white;
+html {
+    font-size: 16px;
+}
+
+body {
+    margin: 0;
     min-height: 100vh;
+    padding: 20px;
+
+    font-family: Arial, sans-serif;
+    color: white;
+    text-align: center;
+
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255, 126, 179, 0.7), transparent 25%),
+        radial-gradient(circle at 80% 80%, rgba(0, 255, 255, 0.3), transparent 25%),
+        linear-gradient(135deg, #6a11cb, #2575fc, #ff4b91);
+
+    background-size: 200% 200%;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    overflow-x: hidden;
+
+    animation: fondoMovimiento 12s ease infinite;
 }
 
-button{
-    background-color: green ;
-    border-style: none;
-    color: white;
-    padding: 5px ;
-    border-radius: 10px;
-    cursor: pointer;
+
+/* =========================
+   TARJETA PRINCIPAL
+========================= */
+
+.invitacion {
+
+    position: relative;
+
+    width: 100%;
+    max-width: 750px;
+
+    padding: 40px 25px;
+
+    background: rgba(255, 255, 255, 0.13);
+
+    backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.35);
+
+    animation: entradaTarjeta 1.2s ease forwards;
+
+    overflow: hidden;
 }
 
-button:hover{
-    background-color: rgb(0, 212  , 0);
 
-}
-button a{
-    
-    color: white;
+/* Brillo que recorre la tarjeta */
+
+.invitacion::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 50%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.15),
+        transparent
+    );
+
+    transform: skewX(-20deg);
+
+    animation: brillo 5s infinite;
 }
 
-footer a{
-    
-    color: white;
+
+/* =========================
+   TITULOS
+========================= */
+
+.bienvenida {
+
+    font-size: 1rem;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    animation:
+        aparecer 1s ease 0.3s both,
+        flotarTexto 3s ease-in-out infinite;
 }
 
-.c-container{
+
+h1 {
+
+    margin: 10px 0;
+
+    font-size: 3.2rem;
+
+    text-shadow:
+        0 5px 15px rgba(0,0,0,0.35);
+
+    animation:
+        aparecer 1s ease 0.5s both,
+        latido 3s ease-in-out infinite;
+}
+
+
+.mensaje {
+
+    font-size: 1.1rem;
+
+    animation:
+        aparecer 1s ease 0.7s both;
+}
+
+
+/* =========================
+   EVENTO
+========================= */
+
+.evento {
+
+    margin: 30px 0;
+
+    padding: 20px;
+
+    background: rgba(0,0,0,0.2);
+
+    border-radius: 20px;
+
+    animation:
+        aparecer 1s ease 0.9s both;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+
+.evento:hover {
+
+    transform: scale(1.03);
+
+    background: rgba(0,0,0,0.3);
+}
+
+
+.evento h2 {
+
+    font-size: 1.3rem;
+
+    animation:
+        brilloTexto 2s ease-in-out infinite;
+}
+
+
+.lugar {
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   CONTADOR
+========================= */
+
+h3 {
+
+    margin-bottom: 20px;
+
+    letter-spacing: 3px;
+
+    animation:
+        aparecer 1s ease 1.1s both;
+}
+
+
+.c-container {
+
     display: flex;
+
     justify-content: center;
-    gap: 1rem;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 35px;
+
+    animation:
+        aparecer 1s ease 1.3s both;
 }
 
-.c-number{
-    background-color: black;
-    color:white;
-    padding: 12px ;
-    border-radius: 5px;
-    box-shadow: 0 0.5em 2em rgba(255, 255, 255, 0.3);
+
+.c-item {
+
+    min-width: 80px;
+
+    transition:
+        transform 0.3s ease;
 }
 
-.c-text{
-    margin-top: 2px;
+
+.c-item:hover {
+
+    transform:
+        translateY(-10px)
+        rotate(2deg);
+}
+
+
+.c-number {
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(0,0,0,0.8),
+            rgba(20,20,20,0.5)
+        );
+
+    padding: 15px 10px;
+
+    border-radius: 15px;
+
+    font-size: 2rem;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.35),
+        inset 0 0 15px rgba(255,255,255,0.08);
+
+    transition:
+        transform 0.2s ease;
+
+    overflow: hidden;
+}
+
+
+/* Brillo de los números */
+
+.c-number::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: -100%;
+    left: -100%;
+
+    width: 200%;
+    height: 200%;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent 40%,
+            rgba(255,255,255,0.25),
+            transparent 60%
+        );
+
+    animation: brilloNumero 4s infinite;
+}
+
+
+.c-text {
+
+    margin-top: 8px;
+
     font-size: 0.7rem;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
 }
 
-@media  (min-width: 900px) {
-    html{
-        font-size: 24px;
 
+/* =========================
+   CONFIRMACION
+========================= */
+
+.confirmacion {
+
+    margin-top: 20px;
+
+    animation:
+        aparecer 1s ease 1.5s both;
+}
+
+
+.confirmacion h2 {
+
+    font-size: 1.4rem;
+}
+
+
+.confirmacion p {
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   BOTON WHATSAPP
+========================= */
+
+.boton {
+
+    position: relative;
+
+    display: inline-block;
+
+    padding: 16px 28px;
+
+    border-radius: 50px;
+
+    background: #25D366;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.35);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+
+    animation:
+        pulsoBoton 2s infinite;
+}
+
+
+.boton:hover {
+
+    transform:
+        translateY(-5px)
+        scale(1.06);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,0.45);
+}
+
+
+.boton:active {
+
+    transform: scale(0.95);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    margin-top: 20px;
+
+    animation:
+        aparecer 2s ease both;
+}
+
+
+footer a {
+
+    color: white;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
+    border-bottom: 1px solid white;
+
+    transition:
+        color 0.3s ease;
+}
+
+
+footer a:hover {
+
+    color: #25D366;
+}
+
+
+/* =========================
+   GLOBOS
+========================= */
+
+.confetti {
+
+    position: fixed;
+
+    z-index: 0;
+
+    font-size: 40px;
+
+    pointer-events: none;
+
+    user-select: none;
+
+    animation:
+        globoFlotando 5s ease-in-out infinite;
+}
+
+
+.confetti-1 {
+
+    top: 10%;
+
+    left: 5%;
+
+    animation-delay: 0s;
+}
+
+
+.confetti-2 {
+
+    top: 20%;
+
+    right: 5%;
+
+    animation-delay: 1s;
+}
+
+
+.confetti-3 {
+
+    bottom: 15%;
+
+    left: 7%;
+
+    animation-delay: 2s;
+}
+
+
+.confetti-4 {
+
+    bottom: 10%;
+
+    right: 8%;
+
+    animation-delay: 3s;
+}
+
+
+/* =========================
+   ANIMACIONES
+========================= */
+
+@keyframes entradaTarjeta {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(80px)
+            scale(0.9);
     }
-    .c-number{
-        padding: 32px;
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
     }
-    button{
-        padding: 20px;
-        font-size: 1rem;
+}
+
+
+@keyframes aparecer {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(30px);
     }
-    
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+@keyframes fondoMovimiento {
+
+    0% {
+
+        background-position: 0% 50%;
+    }
+
+    50% {
+
+        background-position: 100% 50%;
+    }
+
+    100% {
+
+        background-position: 0% 50%;
+    }
+}
+
+
+@keyframes flotarTexto {
+
+    0%,
+    100% {
+
+        transform: translateY(0);
+    }
+
+    50% {
+
+        transform: translateY(-5px);
+    }
+}
+
+
+@keyframes latido {
+
+    0%,
+    100% {
+
+        transform: scale(1);
+    }
+
+    50% {
+
+        transform: scale(1.03);
+    }
+}
+
+
+@keyframes brilloTexto {
+
+    0%,
+    100% {
+
+        text-shadow:
+            0 0 5px rgba(255,255,255,0.2);
+    }
+
+    50% {
+
+        text-shadow:
+            0 0 20px rgba(255,255,255,0.8);
+    }
+}
+
+
+@keyframes brillo {
+
+    0% {
+
+        left: -100%;
+    }
+
+    50% {
+
+        left: 150%;
+    }
+
+    100% {
+
+        left: 150%;
+    }
+}
+
+
+@keyframes brilloNumero {
+
+    0% {
+
+        transform: translateX(-100%) rotate(25deg);
+    }
+
+    50% {
+
+        transform: translateX(100%) rotate(25deg);
+    }
+
+    100% {
+
+        transform: translateX(100%) rotate(25deg);
+    }
+}
+
+
+@keyframes pulsoBoton {
+
+    0% {
+
+        box-shadow:
+            0 8px 25px rgba(0,0,0,0.35);
+    }
+
+    50% {
+
+        box-shadow:
+            0 8px 35px rgba(37,211,102,0.6);
+    }
+
+    100% {
+
+        box-shadow:
+            0 8px 25px rgba(0,0,0,0.35);
+    }
+}
+
+
+@keyframes globoFlotando {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0)
+            rotate(-5deg);
+    }
+
+    50% {
+
+        transform:
+            translateY(-30px)
+            rotate(8deg);
+    }
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+
+    html {
+
+        font-size: 14px;
+    }
+
+    body {
+
+        padding: 10px;
+    }
+
+    .invitacion {
+
+        padding: 30px 15px;
+
+        border-radius: 25px;
+    }
+
+    h1 {
+
+        font-size: 2.2rem;
+    }
+
+    .c-container {
+
+        gap: 7px;
+    }
+
+    .c-item {
+
+        min-width: 65px;
+    }
+
+    .c-number {
+
+        font-size: 1.5rem;
+
+        padding: 12px 8px;
+    }
+
+    .confetti {
+
+        font-size: 25px;
+    }
+
+    .boton {
+
+        width: 90%;
+
+        padding: 15px;
+    }
+}
+/* =========================
+   GLOBOS FLOTANDO
+========================= */
+
+.globos {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.globos span {
+    position: absolute;
+    bottom: -100px;
+    font-size: 45px;
+
+    animation: subirGlobo linear infinite;
+}
+
+/* Cada globo aparece en una posición diferente */
+
+.globos span:nth-child(1) {
+    left: 5%;
+    animation-duration: 9s;
+}
+
+.globos span:nth-child(2) {
+    left: 30%;
+    animation-duration: 12s;
+    animation-delay: 3s;
+}
+
+.globos span:nth-child(3) {
+    left: 65%;
+    animation-duration: 10s;
+    animation-delay: 1s;
+}
+
+.globos span:nth-child(4) {
+    left: 90%;
+    animation-duration: 13s;
+    animation-delay: 5s;
+}
+
+
+@keyframes subirGlobo {
+
+    0% {
+        transform:
+            translateY(0)
+            translateX(0)
+            rotate(-8deg);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    50% {
+        transform:
+            translateY(-50vh)
+            translateX(40px)
+            rotate(8deg);
+    }
+
+    100% {
+        transform:
+            translateY(-120vh)
+            translateX(-40px)
+            rotate(-8deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   CONFETI
+========================= */
+
+#confeti {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 10;
+}
+
+
+/* Cada pieza de confeti */
+
+.confeti-pieza {
+
+    position: absolute;
+
+    top: -20px;
+
+    width: 8px;
+    height: 14px;
+
+    animation:
+        caerConfeti linear forwards;
+}
+
+
+@keyframes caerConfeti {
+
+    0% {
+
+        transform:
+            translateY(-20px)
+            rotate(0deg);
+
+        opacity: 1;
+    }
+
+    100% {
+
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
+        opacity: 0;
+    }
+}
+.messi {
+    width: 180px;
+    height: auto;
+
+    animation:
+        entradaMessi 1.5s ease,
+        flotarMessi 3s ease-in-out infinite;
+
+    filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.4));
+}
+
+
+@keyframes entradaMessi {
+
+    from {
+        opacity: 0;
+        transform: scale(0.5) rotate(-10deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+
+@keyframes flotarMessi {
+
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
 }
